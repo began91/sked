@@ -1,6 +1,6 @@
 #schedule-grid {
     display: grid;
-    grid-template-columns: repeat(68, 1fr);
+    grid-template-columns: repeat(1020, 1fr);
     height: 100%;
     width: 100%;
     z-index: 0;
@@ -8,7 +8,7 @@
 }
 
 .hour {
-    grid-column: auto / span 4;
+    grid-column: auto / span 60;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border: solid 1px rgba(134, 134, 134, 1);
@@ -17,4 +17,18 @@
 .quarter {
     border: dashed 1px rgba(134, 134, 134, 1);
     overflow: visible;
+}
+
+.active-quarter {
+    background-color: rgba(139, 69, 19, 0.5);
+}
+
+#minute {
+    position: absolute;
+    background-color: saddlebrown;
+    z-index: 5;
+    height: 100%;
+    grid-column-end: span 1;
+    width: 1px;
+    border: solid 1px saddlebrown;
 }
