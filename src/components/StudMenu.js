@@ -26,18 +26,29 @@ const StudMenu = props => {
                 <div className="menu-bar"></div>
                 <div className="menu-bar"></div>
             </button>
-            {display ? (<ul className={'menu-popup'}>
-                <li className="menu-item launch">Launch</li>
-                <li className="menu-item inbound">Inbound
-                    <ul className="sub-menu">
-                        <li className="submenu-item inbound-time">5 Out</li>
-                        <li className="submenu-item inbound-time">10 Out</li>
-                        <li className="submenu-item inbound-time">15 Out</li>
-                        <li className="submenu-item inbound-time">20 Out</li>
-                        <li className="submenu-item inbound-time">30 Out</li>
+            {display && <ul className={'menu-popup'}>
+                <li className="launch">Launch</li>
+                <li className="inbound">Inbound &#8250;
+                    <ul className="menu-popup sub-menu">
+                        <li className="inbound-time">5 Out</li>
+                        <li className="inbound-time">10 Out</li>
+                        <li className="inbound-time">15 Out</li>
+                        <li className="inbound-time">20 Out</li>
+                        <li className="inbound-time">30 Out</li>
                     </ul>
                 </li>
-            </ul>) : ''}
+                <li className="cancel">Cancel</li>
+                <li className="incomplete">Incomplete</li>
+                <li className="edit">Edit &#8250;
+                    <ul className="menu-popup sub-menu">
+                        <li className="edit-student">Student</li>
+                        <li className="edit-launch">Launch Time</li>
+                        <li className="edit-event">Event</li>
+                        <li className="edit-duration">Duration</li>
+                        <li className="edit-instructor">Instructor</li>
+                    </ul>
+                </li>
+            </ul>}
         </div>
     )
 }

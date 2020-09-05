@@ -24,4 +24,4 @@ const TimelineGrid = () => {
     )
 }
 
-export default TimelineGrid
+export default TimelineGrid;
