@@ -16,7 +16,7 @@ const Event = props => {
     const event = props.event;
     const name = event.student;
     const displayName = name.split(' ')[0] + ' ' + name.split(' ')[1][0];
-    const duration = Math.round(event.duration*4);
+    const duration = Math.round(event.duration*60);
     const color = eventColor[event.event[0]] || 'pink';
     const status = '';
     return (

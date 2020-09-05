@@ -9,7 +9,6 @@ const TimelineGrid = () => {
     useEffect(() => {
         let interval = setInterval(() => {
             setMinute(minute => minute + 1);
-            console.log(minute);
         }, 60000);
         return () => clearInterval(interval);
     }, [minute])
@@ -18,7 +17,7 @@ const TimelineGrid = () => {
     for (let i = 0; i < 17; i++) {
         let active = null;
         if (Math.floor(minute/60)===i) {
-            active = Math.floor((minute%60)/15);
+            active = Math.floor((minute%60-1)/15);
         }
         hours.push(
             <div className="hour" key={i}>

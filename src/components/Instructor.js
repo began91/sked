@@ -5,7 +5,7 @@ import Event from './Event';
 import './Instructor.css';
 
 const timeToGrid = ETD => {
-    return Math.floor((moment(ETD, 'HHmm')-moment('0800','HHmm'))/1000/60/15)+1;
+    return Math.floor((moment(ETD, 'HHmm')-moment('0800','HHmm'))/1000/60)+1;
 }
 
 const Instructor = props => {
@@ -20,7 +20,7 @@ const Instructor = props => {
 
     const ETD = events[0].ETD;
     const grid = timeToGrid(ETD);
-    const duration = Math.round(events.filter(event => event.event!=='CREW').reduce((duration, event)=> duration + event.duration*60 + 15, -15)/15);
+    const duration = Math.round(events.filter(event => event.event!=='CREW').reduce((duration, event)=> duration + event.duration*60 + 15, -15));
 
     const crew = events.filter(event => event.event === 'CREW')[0]?.student;
     const crewName = 
@@ -37,7 +37,7 @@ const Instructor = props => {
                 .map((event, i) => (<Event event={event} key={i}/>))
                 .reduce((accum, event, i)=>{
                     accum.push(event);
-                    accum.push(<div className='empty-div' key={'e'+i}></div>);
+                    accum.push(<div className='hot-seat' key={'e'+i}></div>);
                     return accum;
                 }, [])}
             </div>

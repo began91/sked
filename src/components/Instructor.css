@@ -13,3 +13,7 @@
 .events-container {
     display: grid;
 }
+
+.hot-seat {
+    grid-column: auto / span 15;
+}
