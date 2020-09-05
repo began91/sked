@@ -1,0 +1,15 @@
+.instructor {
+    background-color:gray;
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.instructor-name {
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.events-container {
+    display: grid;
+}

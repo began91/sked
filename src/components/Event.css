@@ -1,0 +1,21 @@
+.event {
+    border-radius: 10px;
+    position: relative;
+    min-width: 0;
+}
+
+.event > * {
+    white-space: nowrap;
+}
+
+.status {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.event-info {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}

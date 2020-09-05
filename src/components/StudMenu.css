@@ -1,0 +1,60 @@
+.menu-bar {
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    border-radius: 50%;
+    opacity: 0.4;
+    margin: 3px auto;
+}
+
+.stud-menu {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.stud-menu-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.stud-menu-button {
+    background: none;
+    border: none;
+}
+
+.stud-menu-button:hover .menu-bar {
+    opacity: 1;
+}
+
+.menu-popup {
+    z-index: 101;
+    position: absolute;
+    display: none;
+}
+
+.menu-item, .submenu-item{
+    background-color: white;
+    width: 100%;
+    border: solid 1px black;
+    padding: 1px 2px;
+
+}
+
+.menu-popup.show {
+    display: block;
+}
+
+.sub-menu {
+    position: absolute;
+    display: none;
+}
+
+.menu-item:hover > .sub-menu {
+    display: block;
+}

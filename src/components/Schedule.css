@@ -1,0 +1,9 @@
+#schedule {
+    position: relative;
+}
+
+#schedule-lines {
+    z-index: 99;
+    position: relative;
+}
+

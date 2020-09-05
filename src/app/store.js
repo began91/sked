@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import scheduleReducer from '../features/schedule/scheduleSlice';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    schedule: scheduleReducer,
   },
 });
