@@ -7,7 +7,7 @@ import './Event.css';
 const Event = props => {
     
     const event = props.event;
-    const backgroundOpacity = event.status==='airborne' ? 0.5 : 1
+    const backgroundOpacity = (event.status==='airborne' || event.status==='inbound') ? 0.5 : 1
     const eventColor = {
         'C': `rgba(255,0,0,${backgroundOpacity}`,
         'T': `rgba(255,165,0,${backgroundOpacity})`,
@@ -29,7 +29,7 @@ const Event = props => {
 
     return (
         <div className="event" style={eventStyle}>
-            <StudMenu event={event.uid} />
+            <StudMenu event={event} />
             <div className="event-info">
                 <h4 className="stud-name">{displayName}</h4>
                 <p>{event.event.slice(0,8)} {event.duration.toFixed(1)}</p>

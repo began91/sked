@@ -5,11 +5,12 @@
     border-radius: 50%;
     opacity: 0.4;
     margin: 3px auto;
+    position: relative;
+    z-index: 103;
 }
 
 .stud-menu {
     position: absolute;
-    z-index: 58;
     left: 0;
     height: 100%;
 }
@@ -19,6 +20,7 @@
     top: 0;
     left: 0;
     padding: 3px;
+    z-index: 103;
     width: 30px;
     height: 100%;
     cursor: pointer;
@@ -34,7 +36,7 @@
 }
 
 .menu-popup {
-    z-index: 101;
+    z-index: 105;
     position: absolute;
     display: block;
     cursor: pointer;
@@ -46,6 +48,8 @@
     border: solid 1px black;
     padding: 1px 2px;
     font-weight: normal;
+    z-index: 105;
+    position: relative;
 }
 
 li:hover {
@@ -63,6 +67,7 @@ li:hover {
 } */
 
 .sub-menu {
+    z-index: 105;
     display: none;
     right: 0;
     transform: translate(99%, -1.6em);
@@ -71,4 +76,5 @@ li:hover {
 
 li:hover > .sub-menu {
     display: block;
+    z-index: 105;
 }

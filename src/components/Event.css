@@ -2,7 +2,6 @@
     border-radius: 10px;
     position: relative;
     min-width: 0;
-    overflow: hidden;
 }
 
 .event > * {

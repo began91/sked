@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { launch } from '../features/schedule/scheduleSlice';
+import { launch, inbound } from '../features/schedule/scheduleSlice';
 import './StudMenu.css';
 
 const StudMenu = props => {
@@ -29,17 +29,17 @@ const StudMenu = props => {
                 <div className="menu-bar"></div>
             </button>
             {display && <ul className={'menu-popup'}>
-                <li className="launch" onClick={e=>dispatch(launch(event))}>Launch</li>
-                {/* <li className="inbound">Inbound &#8250;
+                <li className="launch" onClick={e=>dispatch(launch(event.uid))}>Launch</li>
+                <li className="inbound">Inbound &#8250;
                     <ul className="menu-popup sub-menu">
-                        <li className="inbound-time">5 Out</li>
-                        <li className="inbound-time">10 Out</li>
-                        <li className="inbound-time">15 Out</li>
-                        <li className="inbound-time">20 Out</li>
-                        <li className="inbound-time">30 Out</li>
+                        <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,5]))}>5 Out</li>
+                        <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,10]))}>10 Out</li>
+                        <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,15]))}>15 Out</li>
+                        <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,20]))}>20 Out</li>
+                        <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,30]))}>30 Out</li>
                     </ul>
                 </li>
-                <li className="cancel">Cancel</li>
+                {/* <li className="cancel">Cancel</li>
                 <li className="incomplete">Incomplete</li>
                 <li className="edit">Edit &#8250;
                     <ul className="menu-popup sub-menu">

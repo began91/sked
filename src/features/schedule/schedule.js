@@ -4,7 +4,7 @@ let schedule = {events: [], lines: []}; //list of events and lines with events a
 //event = {instructor, student, event, duration, line, ETD}
 
 const addevent = (ETD, instructor, student, event, duration, line) => {
-    schedule.events.push({ETD, instructor, student, event, duration, line, status: '', ATD: '', land: '', uid: uid()});
+    schedule.events.push({ETD, instructor, student, event, duration, line, status: '', ATD: '', ATA: '', uid: uid()});
     schedule.lines.includes(line) || schedule.lines.push(line);
 };
 

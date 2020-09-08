@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { land }  from '../features/schedule/scheduleSlice';
 import moment from 'moment';
 import './Status.css';
 
 const Status = props => {
+    const dispatch = useDispatch();
     const event = props.event;
-    const status = props.status;
+    const status = event.status;
 
-    const [elapsedTime, setElapsed] = useState((moment()-moment(event.ATD, 'HHmm')/1000/60))
+    const [elapsedTime, setElapsed] = useState()
+
+    useEffect(()=>{
+        if ((status==='airborne' || status==='inbound') && event.ATD) {
+            setElapsed(Math.round((moment()-moment(event.ATD, 'HHmm'))/60000)+1);
+        }
+    },[status, event.ATD])
 
     useEffect(() => {
         if (status==='airborne') {
-            console.log(status);
             let interval = setInterval(() => {
                 setElapsed(elapsedTime => elapsedTime + 1);
             }, 60000);
             return () => clearInterval(interval);
+        } else if (status==='inbound') {
+            let interval = setInterval(() => {
+                setElapsed(elapsedTime => elapsedTime + 1);
+            }, 60000);
+            if (moment().isAfter(event.ATA, 'HHmm')) {
+                dispatch(land(event.uid));
+            }
+            return () => clearInterval(interval);
+        } else if (status==='landed') {
+            setElapsed(event.duration*60);
         }
-    }, [elapsedTime, status]);
+    }, [elapsedTime, status, event.ATA, event.duration, dispatch]);
 
     const backgroundOpacity = 1;
     const eventColor = {
@@ -33,14 +51,14 @@ const Status = props => {
 
     let style = {
         width: `${percentComplete}%`,
-        backgroundColor: eventColor[event.event[0]] || `rgba(255,182,193,${backgroundOpacity})`
+        backgroundColor: eventColor[event.event[0]] || `rgba(255,182,193,${backgroundOpacity})`,
+        borderTopRightRadius: percentComplete > 90 && '10px',
+        borderBottomRightRadius: percentComplete > 90 && '10px',
     }
-  
 
-
-    return (
+    return ( 
         <div className='status' style={style}>
-            {status}
+            {/* {status} */}
         </div>
     )
 }
