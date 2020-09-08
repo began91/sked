@@ -9,6 +9,7 @@
 
 .stud-menu {
     position: absolute;
+    z-index: 58;
     left: 0;
     height: 100%;
 }

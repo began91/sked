@@ -2,6 +2,7 @@
     background-color:gray;
     border-radius: 10px;
     min-width: 0;
+    grid-row: 1 / 2;
 }
 
 .instructor-name {

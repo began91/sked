@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { launch } from '../features/schedule/scheduleSlice';
 import './StudMenu.css';
 
 const StudMenu = props => {
+    const dispatch = useDispatch();
     const event = props.event;
 
     const [display, setDisplay] = useState(false);
 
-    const displayMenu = () => {
+    const displayMenu = e => {
         setDisplay(true);
         document.addEventListener('click', hideMenu, true);
     }
 
     const hideMenu = () => {
-        setDisplay(false)
-        document.removeEventListener('click', hideMenu, true);
+        setTimeout(()=>{
+            setDisplay(false)
+            document.removeEventListener('click', hideMenu, true);
+        }, 0);
     }
-
-    useEffect(()=>{
-    })
 
     return (
         <div className="stud-menu">
@@ -27,8 +29,8 @@ const StudMenu = props => {
                 <div className="menu-bar"></div>
             </button>
             {display && <ul className={'menu-popup'}>
-                <li className="launch">Launch</li>
-                <li className="inbound">Inbound &#8250;
+                <li className="launch" onClick={e=>dispatch(launch(event))}>Launch</li>
+                {/* <li className="inbound">Inbound &#8250;
                     <ul className="menu-popup sub-menu">
                         <li className="inbound-time">5 Out</li>
                         <li className="inbound-time">10 Out</li>
@@ -47,7 +49,7 @@ const StudMenu = props => {
                         <li className="edit-duration">Duration</li>
                         <li className="edit-instructor">Instructor</li>
                     </ul>
-                </li>
+                </li> */}
             </ul>}
         </div>
     )

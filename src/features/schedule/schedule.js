@@ -1,19 +1,28 @@
+import uid from 'uid';
+
 let schedule = {events: [], lines: []}; //list of events and lines with events assigned to lines
 //event = {instructor, student, event, duration, line, ETD}
 
 const addevent = (ETD, instructor, student, event, duration, line) => {
-    schedule.events.push({ETD, instructor, student, event, duration, line, status: '', launch: '', land: ''});
+    schedule.events.push({ETD, instructor, student, event, duration, line, status: '', ATD: '', land: '', uid: uid()});
     schedule.lines.includes(line) || schedule.lines.push(line);
 };
 
-addevent('0830','BASTEMEYER, DEVIN J. [LCDR]','ALMOQBEL, IBRAHIM M [LTJG]','I4404',2,'C01');
-addevent('0830','BASTEMEYER, DEVIN J. [LCDR]','MEDINA, JOSE G. [ENS]','I4404',2,'C01');
+/**/
 addevent('0815','NEASE, JACOB A [LT]','BROWNING, PAUL J. [ENS]','C4004',1.5,'B01');
 addevent('0815','NEASE, JACOB A [LT]','TOLL, SLOANE A [1stLt]','T4001',1.5,'B01');
-addevent('0815','CROSSLAND, CODY W [LT]','SAUTER, DEVIN N. [ENS]','I4304',1.8,'C02');
-addevent('0815','CROSSLAND, CODY W [LT]','TOLEFREE, JORDYN C [LTJG]','I4304',1.8,'C02');
+addevent('1145','SKELLEY, PHILLIP W [LT]','CINQUEPALMI, FRANCESCO . [ENS]','C4202',2,'B01');
+addevent('1145','SKELLEY, PHILLIP W [LT]','FINE, ADDISON J [LTJG]','C4202',2,'B01');
 addevent('0815','WOOTEN, MICHAEL L [LCDR]','BUTLER, ABRAM M [1stLt]','C4102',2,'B02');
 addevent('0815','WOOTEN, MICHAEL L [LCDR]','TRANI, FRANCESCO [ENS]','C4203',2,'B02');
+addevent('1245','OUELLETTE, DANIEL B [Capt]','REISER, ALEXANDER W. [LTJG]','C4503',1.7,'B02');
+addevent('1245','OUELLETTE, DANIEL B [Capt]','VAUGHAN, LOGAN H [1stLt]','C4103',2,'B02');
+
+
+addevent('0830','BASTEMEYER, DEVIN J. [LCDR]','ALMOQBEL, IBRAHIM M [LTJG]','I4404',2,'C01');
+addevent('0830','BASTEMEYER, DEVIN J. [LCDR]','MEDINA, JOSE G. [ENS]','I4404',2,'C01');
+addevent('0815','CROSSLAND, CODY W [LT]','SAUTER, DEVIN N. [ENS]','I4304',1.8,'C02');
+addevent('0815','CROSSLAND, CODY W [LT]','TOLEFREE, JORDYN C [LTJG]','I4304',1.8,'C02');
 addevent('0900','ISBELL, BRIAN L [LT]','GRILES, ANDREW C [1stLt]','F4001',2,'C03');
 addevent('0900','ISBELL, BRIAN L [LT]','MARCUM, EMMA L. [LT]','HT FERRY (Helo)',2,'C03');
 addevent('0900','KELLNER, ANDREW W [LtCol]','VANDERAH, RYAN W [1stLt]','F4001',2,'C04');
@@ -40,20 +49,18 @@ addevent('0930','TOPP, MARIANNE A [LT]','COLLEY, PATRICK T [ENS]','N4401',1.3,'C
 addevent('0930','TOPP, MARIANNE A [LT]','RITTER, WILLIAM C [ENS]','N4401',1.3,'C09');
 addevent('0930','EGAN, BRENDAN C. [LT]','CASSIN, FRANCES R [1stLt]','C4601',1.5,'C10');
 addevent('0930','EGAN, BRENDAN C. [LT]','JENNINGS, JULIE A [ENS]','I4001',1.7,'C10');
-addevent('1145','SKELLEY, PHILLIP W [LT]','CINQUEPALMI, FRANCESCO . [ENS]','C4202',2,'B01');
-addevent('1145','SKELLEY, PHILLIP W [LT]','FINE, ADDISON J [LTJG]','C4202',2,'B01');
 addevent('1230','HAFENSTEINER, KAITLIN V [LT]','HOLMES, KEITH R [LTJG]','C4502',1.7,'B04');
 addevent('1230','HAFENSTEINER, KAITLIN V [LT]','JOHNSON, DANIEL S [LTJG]','C4502',1.7,'B04');
 addevent('1230','TRAMMELL, ALAN [Maj]','PACREM, TYLER J [ENS]','I4501',2,'C02');
 addevent('1230','TRAMMELL, ALAN [Maj]','PACREM, TYLER J [ENS]','I4502',2,'C02');
+/*
+*/ 
 addevent('1315','ELLWOOD, THOMAS M [LT]','COLLINS, CHRISTOPHER T [1stLt]','I4401',2,'C10');
 addevent('1315','ELLWOOD, THOMAS M [LT]','COTTRELL, BRANDON K. [ENS]','I4402',2,'C10');
 addevent('1245','SONCINI, CHRISTIAN R [LT]','AYRES, JON P [1stLt]','C4004',1.5,'B05');
 addevent('1245','SONCINI, CHRISTIAN R [LT]','BROWN, ANDREW S [LTJG]','C4004',1.5,'B05');
-addevent('1245','OUELLETTE, DANIEL B [Capt]','REISER, ALEXANDER W. [LTJG]','C4503',1.7,'B02');
 addevent('1245','FRYER, NATHANIEL E [LT]','COTNEY, JACKSON S. [ENS]','I4486',2,'C09');
 addevent('1245','FRYER, NATHANIEL E [LT]','REISING, MICHAEL L. [LTJG]','I4401',2,'C09');
-addevent('1245','OUELLETTE, DANIEL B [Capt]','VAUGHAN, LOGAN H [1stLt]','C4103',2,'B02');
 addevent('1300','KROLL, BRIAN T [LCDR]','BURKE, BRENDAN M. [LTJG]','N4401',1.3,'C06');
 addevent('1300','KROLL, BRIAN T [LCDR]','OBERLE, CHRISTOPHER R [1stLt]','N4401',1.3,'C06');
 addevent('1300','COUILLARD, KYLE P [LT]','DAVIDSON, JAMIE L. [ENS]','C4003',1.5,'B03');

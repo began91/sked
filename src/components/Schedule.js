@@ -6,7 +6,7 @@ import TimelineGrid from './TimelineGrid';
 
 const Schedule = () => {
     const lines = useSelector(state => {
-        return state.schedule.lines.sort().map(line => {
+        return [...state.schedule.lines].sort().map(line => {
             return (<Line line={line} key={line}/>);
         })
     });

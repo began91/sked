@@ -19,29 +19,37 @@ const Instructor = props => {
     });
 
     const ETD = events[0].ETD;
-    const grid = timeToGrid(ETD);
+    const ATD = events.find(event=>event.ATD)?.ATD;
     const duration = Math.round(events.filter(event => event.event!=='CREW').reduce((duration, event)=> duration + event.duration*60 + 15, -15));
 
     const crew = events.filter(event => event.event === 'CREW')[0]?.student;
     const crewName = 
     // crew?.split('[')[1].slice(0,-1) + ' ' + 
     crew?.split(' ')[0] + ' ' + crew?.split(' ')[1][0];
+    const instStyle = {gridColumn: `${timeToGrid(ETD)} / span ${duration}`}
+
+    const eventsContainerStyle = {
+        gridTemplateColumns: `repeat(${duration}, 1fr)`,
+        gridColumn: `${timeToGrid(ATD || ETD)} / span ${duration}`
+    }
 
     return (
-        <div className="instructor" style={{gridColumn: `${grid} / span ${duration}`}}>
+        <>
+        <div className="instructor" style={instStyle}>
             <h3 className="instructor-name">
                 {displayName}{crew ? ` / ${crewName}` : ''}
             </h3>
-            <div className="events-container" style={{gridTemplateColumns: `repeat(${duration}, 1fr)`}}>
-                {events.filter(event => event.event!=='CREW')
-                .map((event, i) => (<Event event={event} key={i}/>))
-                .reduce((accum, event, i)=>{
-                    accum.push(event);
-                    accum.push(<div className='hot-seat' key={'e'+i}></div>);
-                    return accum;
-                }, [])}
-            </div>
         </div>
+        <div className="events-container" style={eventsContainerStyle}>
+            {[...events].filter(event => event.event!=='CREW').sort((a,b)=> a.ATD<b.ATD)
+            .map((event, i) => (<Event event={event} key={i} />))
+            .reduce((accum, event, i)=>{
+                accum.push(event);
+                accum.push(<div className='hot-seat' key={'e'+i}></div>);
+                return accum;
+            }, []).slice(0,-1)}
+        </div>
+        </>
     );
 };
 
