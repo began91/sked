@@ -1,0 +1,9 @@
+.status {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 54;
+    /* background-color: blue; */
+ 
+    /* width: 50%; */
+}
