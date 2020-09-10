@@ -1,14 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit';
-import schedule from './schedule';
+// import schedule from './schedule';
 import moment from 'moment';
+
+const initialState = {
+    parsedData: [],
+    lines: [],
+    instructors: [],
+    events: [],
+}
 
 export const scheduleSlice = createSlice({
     name: 'schedule',
-    initialState: schedule,
+    initialState,
     reducers: {
-        setValue: (state,action) => {
-            const [key, value] = action.payload;
-            state[key] = value;
+        setData: (state, action) => {
+            state.parsedData = action.payload;
         },
         launch: (state, action) => {
             const uid = action.payload;
@@ -33,6 +39,6 @@ export const scheduleSlice = createSlice({
     }
 });
 
-export const {setValue, launch, inbound, land} = scheduleSlice.actions;
+export const {setData, launch, inbound, land} = scheduleSlice.actions;
 
 export default scheduleSlice.reducer;

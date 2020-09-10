@@ -52,7 +52,7 @@
     position: relative;
 }
 
-li:hover {
+.menu-popup > li:hover {
     background-color: rgb(100, 100, 100);
     font-weight: bold;
 }

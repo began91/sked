@@ -1,0 +1,19 @@
+.dropzone {
+    background-color: rgb(241, 241, 241);
+    border: dashed 4px rgb(182, 182, 182);
+}
+
+ol.drag-instructions {
+    text-align: left;
+    margin: 30px;
+}
+
+ol.drag-instructions > li {
+    list-style-type: decimal;
+}
+
+ul.drag-instructions > li {
+    list-style-type: disc;
+    position: relative;
+    left: 30px;
+}

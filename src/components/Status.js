@@ -34,7 +34,7 @@ const Status = props => {
         } else if (status==='landed') {
             setElapsed(event.duration*60);
         }
-    }, [elapsedTime, status, event.ATA, event.duration, dispatch]);
+    }, [elapsedTime, status, event.ATA, event.duration, event.uid, dispatch]);
 
     const backgroundOpacity = 1;
     const eventColor = {
