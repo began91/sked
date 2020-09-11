@@ -2,13 +2,13 @@ import React from 'react';
 import Papa from 'papaparse';
 import Dropzone from 'react-dropzone';
 import { useDispatch } from 'react-redux';
-import { setData } from '../features/schedule/scheduleSlice';
+import { parseData } from '../features/schedule/scheduleSlice';
 import './DropArea.css';
 
 
 const DropArea = () => {
     const dispatch = useDispatch();
-
+//TODO: move the logic of actually parsing the data to the reducer function
     const handleDrop = files => {
         if (files.length) {
             files.forEach(file => {
@@ -18,7 +18,7 @@ const DropArea = () => {
                     },
                     complete: (results, file) => {
                         console.log('Parsing Complete: ', results, file);
-                        dispatch(setData(results.data));
+                        dispatch(parseData(results.data));
                     },
                     skipEmptyLines: true
                 }

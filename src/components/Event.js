@@ -1,12 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 // import moment from 'moment';
 import StudMenu from './StudMenu';
 import Status from './Status';
 import './Event.css';
     
 const Event = props => {
-    
-    const event = props.event;
+    const uid = props.uid;
+    const event = useSelector(state => state.schedule.events[uid]);
+
     const backgroundOpacity = (event.status==='airborne' || event.status==='inbound') ? 0.5 : 1
     const eventColor = {
         'C': `rgba(255,0,0,${backgroundOpacity}`,

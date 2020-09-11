@@ -19,17 +19,7 @@ const Times = () => {
 
 const Line = props => {
     const line = props.line
-    const instructors = useSelector(state => {
-        return state.schedule.events.filter(event => event.line === line)
-        // .sort((a,b)=>a.ETD-b.ETD)
-        .reduce((instructors, event) => {
-            instructors.includes(event.instructor) || instructors.push(event.instructor)
-            return instructors;
-        }, [])
-        .map((instructor, i) => {
-            return (<Instructor instructor={instructor} key={i} />)
-        })
-    })
+    const instructors = useSelector(state => state.schedule.lines[line].instructors.map((uid, i)=> (<Instructor uid={uid} key={i}/>)));
 
     return (
         <div className="line">
