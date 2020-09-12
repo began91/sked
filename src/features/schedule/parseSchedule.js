@@ -43,7 +43,7 @@ const parseSchedule = (state, action) => {
             event: row[col.event],
             duration: Number(row[col.eventDuration]),
             TMS: row[col.TMS],
-            ETD: row[col.ETD].slice(-4),
+            ETD: row[col.ETD].slice(-5),
             ATD: '',
             status: '',
             notes
