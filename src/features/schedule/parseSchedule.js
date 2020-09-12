@@ -43,7 +43,7 @@ const parseSchedule = (state, action) => {
             event: row[col.event],
             duration: Number(row[col.eventDuration]),
             TMS: row[col.TMS],
-            ETD: row[col.ETD],
+            ETD: row[col.ETD].slice(-4),
             ATD: '',
             status: '',
             notes
@@ -57,7 +57,7 @@ const parseSchedule = (state, action) => {
                 name: row[col.instructor],
                 uid: instructorUID,
                 breif: row[col.brief],
-                ETD: row[col.ETD],
+                ETD: row[col.ETD].slice(-5),
                 events: [],
                 notes: []
             }
@@ -87,7 +87,7 @@ const parseSchedule = (state, action) => {
                 lines[line].aircraft = aircraft;
             }
         }
-        if (row[col.event] === 'CREW') {
+        if (row[col.event] === 'CREW' || row[col.event] === 'HT OBS (Helo)') {
             const crew = row[col.student];
             instructors[lastInstructorUID].crew = crew;
         } else {

@@ -5,14 +5,14 @@ import Event from './Event';
 import './Instructor.css';
 
 const timeToGrid = ETD => {
-    return Math.floor((moment(ETD, 'MM/DD/YYYY HHmm')-moment('0800','HHmm'))/1000/60)+1;//TODO: Fix date formatting
+    return Math.floor((moment(ETD, 'HH:mm')-moment('0800','HHmm'))/1000/60)+1;//TODO: Fix date formatting
 }
 
 const Instructor = props => {
     const instructor = useSelector(state => state.schedule.instructors[props.uid])
     const name = instructor.name;
 
-    const displayName = (name==='SOLO' ? 'SOLO' : name.split(' ')[0] + ' ' + name.split(' ')[1][0]);
+    const displayName = (name.includes('SOLO') ? 'SOLO' : (name.split(' ')[0] + ' ' + name.split(' ')[1][0]));
     // name.split('[')[1].slice(0,-1) + ' ' + //rank
 
     const crew = instructor.crew;

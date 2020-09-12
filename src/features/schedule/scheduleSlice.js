@@ -20,9 +20,9 @@ export const scheduleSlice = createSlice({
         launch: (state, action) => {
             const uid = action.payload;
             const ATD = moment().subtract(30,'minutes').format('HHmm');//subtract 30 for demo purposes
-            const i = state.events.findIndex(event=> event.uid===uid);
-            state.events[i].ATD = ATD;
-            state.events[i].status = 'airborne';
+            // const i = state.events.findIndex(event=> event.uid===uid);
+            state.events[uid].ATD = ATD;
+            state.events[uid].status = 'airborne';
         },
         inbound: (state,action) => {
             const [uid, timeOut] = action.payload;
