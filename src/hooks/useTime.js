@@ -13,7 +13,7 @@ const useTime = () => {
             setTime(moment().format('HHmm'));
         }, refreshCycle);
         return ()=> clearInterval(interval);
-    }, [refreshCycle, moment, setInterval, clearInterval, setTime]);
+    }, [refreshCycle, setTime]);
 
     return time; // returns time string in format HHmm eg 0800, 2359, etc
 }

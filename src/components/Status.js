@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+// import { useDispatch } from 'react-redux';
 import useTime from '../hooks/useTime';
-import { land }  from '../features/schedule/scheduleSlice';
+// import { land }  from '../features/schedule/scheduleSlice';
 import moment from 'moment';
 import './Status.css';
 
 const Status = props => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const event = props.event;
     const status = event.status;
     const time = useTime();

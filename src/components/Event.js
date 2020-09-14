@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-// import moment from 'moment';
+import moment from 'moment';
 import StudMenu from './StudMenu';
 import Status from './Status';
 import './Event.css';
@@ -25,9 +25,13 @@ const Event = props => {
     const duration = Math.round(event.duration*60);
     const color = eventColor[event.event[0]] || `rgba(255,182,193,${backgroundOpacity})`;
     
-    
+    const startTime = event.ATD || event.ETD || event.skedDep;
+    const timeAfter8 = moment(startTime, 'HHmm')
+    const startGrid = Math.floor((moment(startTime, 'Hmm')-moment('0800','HHmm'))/1000/60);
+    console.log({startTime, timeAfter8, startGrid, event});
+
     const eventStyle = {
-        gridColumn: `auto / span ${duration}`,
+        gridColumn: `${startGrid} / span ${duration}`,
         backgroundColor: color,
     }
 

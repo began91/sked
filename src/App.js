@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Clock from 'react-live-clock';
 import logo from './resources/28patch.png';
 import Schedule from './components/Schedule';
 import DropArea from './components/DropArea';

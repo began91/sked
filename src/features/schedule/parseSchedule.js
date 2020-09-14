@@ -1,4 +1,5 @@
 import uid from 'uid';
+import moment from 'moment';
 
 const col = { //dictionary for what each column each data is in. May need to be able to dynamically determine which is the correct column based on the rest of the data in case someone has mixed up columns.
     lineId: 3,
@@ -29,7 +30,8 @@ const parseSchedule = (state, action) => {
     let instructors = {};
     let events = {};
     let lastInstructorUID = '';
-    let lastETD = '';
+    let lastDep = '';
+    let lastDuration = '';
     parsedData.forEach(row => {
         if (!row[col.student]) {
             return 0;
@@ -44,12 +46,15 @@ const parseSchedule = (state, action) => {
             event: row[col.event],
             duration: Number(row[col.eventDuration]),
             TMS: row[col.TMS],
-            ETD: row[col.ETD].slice(-5).split(':').join('') || lastETD,
+            ETD: '', // row[col.ETD].slice(-5).split(':').join('') || lastETD,
+            skedDep: row[col.ETD].slice(-5).split(':').join('') || moment(lastDep, 'Hmm').add(lastDuration*60 + 15, 'minutes').format('HHmm'),
             ATD: '',
             status: '',
             notes
         }
         events[eventUID] = event;
+        lastDuration = event.duration;
+        lastDep = event.skedDep;
         
         if (row[col.instructor]) {
             //TODO: handle SOLO as instrucor and make it the studentSOLO
@@ -58,13 +63,15 @@ const parseSchedule = (state, action) => {
                 name: row[col.instructor],
                 uid: instructorUID,
                 breif: row[col.brief],
-                ETD: row[col.ETD].slice(-5).split(':').join(''),
+                ETD: '', // row[col.ETD].slice(-5).split(':').join(''),
+                skedDep: row[col.ETD].slice(-5).split(':').join(''),
                 events: [],
                 notes: []
             }
 
             lastInstructorUID = instructorUID;
-            lastETD = instructor.ETD;
+            
+
             
             instructors[instructorUID] = instructor;
             

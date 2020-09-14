@@ -24,7 +24,7 @@ const StudMenu = props => {
     }
 
     return (
-        <div className="stud-menu">
+        <div className="stud-menu" onContextMenu={()=>console.log('menu')}>
             <button className="launch" onClick={e=>dispatch(launch(event.uid))}>
                 {/* {<img src={launchPNG} alt="" className="launch"/>} */}
                 <LaunchSVG/>
