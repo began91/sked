@@ -26,10 +26,16 @@ const Event = props => {
     
     const startTime = event.ATD || event.ETD || event.skedDep;
     const timeAfter8 = moment(startTime, 'HHmm')
-    const startGrid = Math.floor((moment(startTime, 'Hmm')-moment('0800','HHmm'))/1000/60);
+    let startCol = Math.floor((moment(startTime, 'Hmm')-moment('0800','HHmm'))/1000/60);
+    let startRow = 1;
+    if (startCol < 0) {
+        startCol = -duration;
+        startRow = 'auto';
+    }
 
     const eventStyle = {
-        gridColumn: `${startGrid} / span ${duration}`,
+        gridColumn: `${startCol} / span ${duration}`,
+        gridRowStart: startRow,
         backgroundColor: color,
     }
 

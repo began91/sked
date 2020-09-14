@@ -20,7 +20,13 @@ span.line-name {
 .instructors-container {
     display: grid;
     grid-template-columns: repeat(1020, 1fr);
-    grid-template-rows: 1fr, 1fr;
+    position: relative;
+    background-color: rgba(123,21,244, 0.3);
+}
+
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(1020, 1fr);
     position: relative;
     background-color: rgba(123,21,244, 0.3);
 }

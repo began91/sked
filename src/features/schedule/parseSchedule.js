@@ -65,8 +65,10 @@ const parseSchedule = (state, action) => {
                 name: row[col.instructor],
                 uid: instructorUID,
                 breif: row[col.brief],
-                ETD: '', // row[col.ETD].slice(-5).split(':').join(''),
                 skedDep: row[col.ETD].slice(-5).split(':').join(''),
+                ETD: '', // row[col.ETD].slice(-5).split(':').join(''),
+                ETA: '',
+                status: '',
                 events: [],
                 notes: []
             }
@@ -98,17 +100,18 @@ const parseSchedule = (state, action) => {
         }
         event.instructorUID = lastInstructorUID;
         events[eventUID] = event;
-        if (lines[line].events) {
-            lines[line].events.push(eventUID);
-        } else {
-            lines[line].events = [eventUID];
-        }
+
         if (row[col.event] === 'CREW' || row[col.event] === 'HT OBS (Helo)') {
             const crew = row[col.student];
             instructors[lastInstructorUID].crew = crew;
         } else {
             instructors[lastInstructorUID].events.push(eventUID);
             instructors[lastInstructorUID].notes.push(notes);
+            if (lines[line].events) {
+                lines[line].events.push(eventUID);
+            } else {
+                lines[line].events = [eventUID];
+            }
         }
     });
     state.lines = lines;

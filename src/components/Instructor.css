@@ -11,11 +11,6 @@
     overflow: hidden;
 }
 
-.events-container {
-    display: grid;
-    grid-row: 2 / 3;
-}
-
 .hot-seat {
     grid-column: auto / span 15;
     background-color: blue;

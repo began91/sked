@@ -45,8 +45,10 @@ const Line = props => {
             <div className="horizontal-line"></div>
             <span className="line-name">{line}</span>
             <div className="instructors-container">
-                {events.map((event, i)=>(<Event event={event} key={i}/>))}
                 {instructorUIDs.map((uid, i)=> (<Instructor uid={uid} key={i}/>))}
+            </div>
+            <div className="events-container">
+                {events.map((event, i)=>(<Event event={event} key={i}/>))}
             </div>
         </div>
     );
