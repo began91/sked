@@ -1,0 +1,32 @@
+.plane-launch {
+    background-size: 20px 20px;
+}
+
+.plane-launch:hover > #plane-launch {
+    animation: launch 2s linear infinite;
+}
+
+.plane-launch:hover > #runway {
+    animation: runway 2s linear infinite;
+}
+
+@keyframes launch {
+    from {
+        transform: rotateZ(20deg) translate3d(10%,-10%,0);
+    }
+    to {
+        transform: rotateZ(-10deg) translate3d(-10%,10%,0);
+    }
+}
+
+@keyframes runway {
+    0% {
+        transform: translate3d(0,-10%,0);
+    }
+    50% {
+        transform: translate3d(0,-10%,0);
+    }
+    100% {
+        transform: translate3d(-200%, 30%, 0)
+    }
+}
