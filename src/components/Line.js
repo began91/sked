@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import Instructor from './Instructor';
+import Event from './Event';
 import './Line.css';
 
 const Times = () => {
@@ -19,7 +20,22 @@ const Times = () => {
 
 const Line = props => {
     const line = props.line
-    const instructors = useSelector(state => state.schedule.lines[line].instructors.map((uid, i)=> (<Instructor uid={uid} key={i}/>)));
+    const instructorUIDs = useSelector(state => state.schedule.lines[line].instructors);
+    const _events = useSelector(state => instructorUIDs.reduce((eventUIDs, uid)=>{
+        eventUIDs.push(...state.schedule.instructors[uid].events)
+        return eventUIDs;
+    }, []).map(eventUID=>state.schedule.events[eventUID])
+    );
+    let events = [..._events].sort((a,b)=>{
+        const aTime = a.ATD ? a.ATD : a.ETD;
+        const bTime = b.ATD ? b.ATD : b.ETD;
+        // console.log({aTime,bTime})
+        const result = moment(aTime,'HHmm')-moment(bTime,'HHmm');
+        
+        // console.log({a: a.student,b: b.student,result})
+        return result;
+    });
+    // console.log(1);
 
     return (
         <div className="line">
@@ -27,7 +43,8 @@ const Line = props => {
             <div className="horizontal-line"></div>
             <span className="line-name">{line}</span>
             <div className="instructors-container">
-                {instructors}
+                {events.map((event, i)=>(<Event uid={event.uid} key={i}/>))}
+                {/* {instructorUIDs.map((uid, i)=> (<Instructor uid={uid} key={i}/>))} */}
             </div>
         </div>
     );

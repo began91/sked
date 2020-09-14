@@ -24,6 +24,8 @@ const Event = props => {
     const displayName = name.split(' ')[0] + ' ' + name.split(' ')[1][0];
     const duration = Math.round(event.duration*60);
     const color = eventColor[event.event[0]] || `rgba(255,182,193,${backgroundOpacity})`;
+    
+    
     const eventStyle = {
         gridColumn: `auto / span ${duration}`,
         backgroundColor: color,

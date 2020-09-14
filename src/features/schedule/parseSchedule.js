@@ -29,6 +29,7 @@ const parseSchedule = (state, action) => {
     let instructors = {};
     let events = {};
     let lastInstructorUID = '';
+    let lastETD = '';
     parsedData.forEach(row => {
         if (!row[col.student]) {
             return 0;
@@ -43,7 +44,7 @@ const parseSchedule = (state, action) => {
             event: row[col.event],
             duration: Number(row[col.eventDuration]),
             TMS: row[col.TMS],
-            ETD: row[col.ETD].slice(-5),
+            ETD: row[col.ETD].slice(-5).split(':').join('') || lastETD,
             ATD: '',
             status: '',
             notes
@@ -57,12 +58,13 @@ const parseSchedule = (state, action) => {
                 name: row[col.instructor],
                 uid: instructorUID,
                 breif: row[col.brief],
-                ETD: row[col.ETD].slice(-5),
+                ETD: row[col.ETD].slice(-5).split(':').join(''),
                 events: [],
                 notes: []
             }
 
             lastInstructorUID = instructorUID;
+            lastETD = instructor.ETD;
             
             instructors[instructorUID] = instructor;
             

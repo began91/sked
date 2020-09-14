@@ -20,7 +20,8 @@ const DropArea = () => {
                         console.log('Parsing Complete: ', results, file);
                         dispatch(parseData(results.data));
                     },
-                    skipEmptyLines: true
+                    skipEmptyLines: true,
+                    header: false
                 }
                 Papa.parse(file, config);
             })

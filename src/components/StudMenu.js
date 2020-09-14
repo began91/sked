@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { launch, inbound } from '../features/schedule/scheduleSlice';
 import './StudMenu.css';
-import launchPNG from '../resources/takeoff.png';
-import landPNG from '../resources/land.png';
+import LaunchSVG from '../resources/LaunchSVG';
+import LandSVG from '../resources/LandSVG';
 
 const StudMenu = props => {
     const dispatch = useDispatch();
@@ -26,7 +26,8 @@ const StudMenu = props => {
     return (
         <div className="stud-menu">
             <button className="launch" onClick={e=>dispatch(launch(event.uid))}>
-                {<img src={launchPNG} alt="" className="launch"/>}
+                {/* {<img src={launchPNG} alt="" className="launch"/>} */}
+                <LaunchSVG/>
             </button>
             {/* <button className="launch">&#x1f6ec;</button> */}
             {/* <button className="stud-menu-button" onClick={displayMenu}>
@@ -36,7 +37,7 @@ const StudMenu = props => {
             </button> */}
             {display && <ul className={'menu-popup'}>
                 <li className="launch" onClick={e=>dispatch(launch(event.uid))}>Launch</li>
-                <li className="inbound">Inbound &#8250;
+                <li className="inbound"><LandSVG/> &#8250;
                     <ul className="menu-popup sub-menu">
                         <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,5]))}>5 Out</li>
                         <li className="inbound-time" onClick={e=>dispatch(inbound([event.uid,10]))}>10 Out</li>

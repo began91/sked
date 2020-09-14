@@ -5,7 +5,9 @@ import Line from './Line';
 import TimelineGrid from './TimelineGrid';
 
 const Schedule = () => {
-    const lines = useSelector(state => Object.keys(state.schedule.lines).sort().map(line => (<Line line={line} key={line}/>)));    
+    const lines = useSelector(state => Object.keys(state.schedule.lines).sort()
+    .filter(line=> line==='C06')
+    .map(line => (<Line line={line} key={line}/>)));    
     return (
     <div id="schedule">
         <TimelineGrid/>

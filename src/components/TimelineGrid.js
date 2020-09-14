@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
+import useTime from '../hooks/useTime';
 import './TimelineGrid.css';
 
-const TimelineGrid = () => {
 
-    const [minute, setMinute] = useState(Math.round((moment()-moment('08','HH'))/1000/60))
-    
-    useEffect(() => {
-        let interval = setInterval(() => {
-            setMinute(minute => minute + 1);
-        }, 60000);
-        return () => clearInterval(interval);
-    }, [minute])
+const TimelineGrid = () => {
+    const minute = Math.round((moment(useTime(),'HHmm')-moment('08','HH'))/60000);
     
     let hours = [];
     for (let i = 0; i < 17; i++) {
