@@ -15,14 +15,18 @@ export const scheduleSlice = createSlice({
     initialState,
     reducers: {
         parseData: (state, action) => {
-            parseSchedule(state, action)
+            parseSchedule(state, action);
         },
         launch: (state, action) => {
             const uid = action.payload;
-            const ATD = moment().subtract(30,'minutes').format('HHmm');//subtract 30 for demo purposes
-            // const i = state.events.findIndex(event=> event.uid===uid);
-            state.events[uid].ATD = ATD;
+            
+            state.events[uid].ATD = moment().subtract(30,'minutes').format('HHmm');//subtract 30 for demo purposes
+            state.events[uid].ETE = state.events[uid].duration;
+            state.events[uid].ETA = moment().add(state.events[uid].duration,'h');
             state.events[uid].status = 'airborne';
+
+            //update ETD's of events on this line within 15 minutes of this events land time to be 15 minutes after ETA. and recurse
+            
         },
         inbound: (state,action) => {
             const [uid, timeOut] = action.payload;

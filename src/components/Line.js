@@ -18,24 +18,26 @@ const Times = () => {
     return (<div className="times">{hours}</div>)
 }
 
-const useLine = line => {
-    const instructorUIDs = useSelector(state => state.schedule.lines[line].instructors);
-    const _events = useSelector(state => instructorUIDs.reduce((eventUIDs, uid)=>{
-        eventUIDs.push(...state.schedule.instructors[uid].events)
-        return eventUIDs;
-    }, [])
-    .map(eventUID=>state.schedule.events[eventUID]));
-    const events = [..._events].sort((a,b)=>{
+const useSortedEvents = _eventUIDs => {
+    const events = useSelector(state=>_eventUIDs.map(eventUID=>state.schedule.events[eventUID]));
+    // const _events = useSelector(state => instructorUIDs.reduce((eventUIDs, uid)=>{
+    //     eventUIDs.push(...state.schedule.instructors[uid].events)
+    //     return eventUIDs;
+    // }, [])
+    // .map(eventUID=>state.schedule.events[eventUID]));
+    return [...events].sort((a,b)=>{
         const aTime = a.ATD || a.ETD || a.skedDep;
         const bTime = b.ATD || b.ETD || b.skedDep;
-        return moment(aTime,'HHmm') - moment(bTime, 'HHmm');
-    })
-    return [instructorUIDs, events];
+        return moment(aTime,'Hmm') - moment(bTime, 'Hmm');
+    });
 }
 
 const Line = props => {
     const line = props.line
-    let [instructorUIDs, events] = useLine(line);
+    const instructorUIDs = useSelector(state => state.schedule.lines[line].instructors);
+    const _eventUIDs = useSelector(state => state.schedule.lines[line].events);
+    const events = useSortedEvents(_eventUIDs);
+
 
     return (
         <div className="line">
@@ -43,7 +45,7 @@ const Line = props => {
             <div className="horizontal-line"></div>
             <span className="line-name">{line}</span>
             <div className="instructors-container">
-                {events.map((event, i)=>(<Event uid={event.uid} key={i}/>))}
+                {events.map((event, i)=>(<Event event={event} key={i}/>))}
                 {instructorUIDs.map((uid, i)=> (<Instructor uid={uid} key={i}/>))}
             </div>
         </div>

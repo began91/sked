@@ -30,6 +30,7 @@ const parseSchedule = (state, action) => {
     let instructors = {};
     let events = {};
     let lastInstructorUID = '';
+    let lastLine = '';
     let lastDep = '';
     let lastDuration = '';
     parsedData.forEach(row => {
@@ -37,7 +38,8 @@ const parseSchedule = (state, action) => {
             return 0;
         }
         //every line has an event...
-        const line = row[col.lineId].slice(0,3);
+        const line = row[col.lineId].slice(0,3) || lastLine;
+        lastLine = line;
         const notes = row[col.notes];
         const eventUID = uid();
         const event = {
@@ -50,9 +52,9 @@ const parseSchedule = (state, action) => {
             skedDep: row[col.ETD].slice(-5).split(':').join('') || moment(lastDep, 'Hmm').add(lastDuration*60 + 15, 'minutes').format('HHmm'),
             ATD: '',
             status: '',
-            notes
+            notes,
+            line
         }
-        events[eventUID] = event;
         lastDuration = event.duration;
         lastDep = event.skedDep;
         
@@ -68,21 +70,19 @@ const parseSchedule = (state, action) => {
                 events: [],
                 notes: []
             }
-
+            
             lastInstructorUID = instructorUID;
             
-
+            
             
             instructors[instructorUID] = instructor;
             
-            if (lines[line]) {
+            if (lines[line]?.instructors) {
                 lines[line].instructors.push(instructorUID);
             } else {
-                lines[line] = {
-                    instructors: [instructorUID]
-                }
+                lines[line] = {instructors: [instructorUID]};
             }
-
+            
             if (row[col.aircraft] && !lines[line].aircraft) {
                 const aircraft = {
                     TMS: row[col.TMS],
@@ -95,6 +95,13 @@ const parseSchedule = (state, action) => {
                 }
                 lines[line].aircraft = aircraft;
             }
+        }
+        event.instructorUID = lastInstructorUID;
+        events[eventUID] = event;
+        if (lines[line].events) {
+            lines[line].events.push(eventUID);
+        } else {
+            lines[line].events = [eventUID];
         }
         if (row[col.event] === 'CREW' || row[col.event] === 'HT OBS (Helo)') {
             const crew = row[col.student];

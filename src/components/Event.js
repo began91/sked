@@ -1,13 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import moment from 'moment';
 import StudMenu from './StudMenu';
 import Status from './Status';
 import './Event.css';
     
 const Event = props => {
-    const uid = props.uid;
-    const event = useSelector(state => state.schedule.events[uid]);
+    const event = props.event;
 
     const backgroundOpacity = (event.status==='airborne' || event.status==='inbound') ? 0.5 : 1
     const eventColor = {
@@ -28,7 +27,6 @@ const Event = props => {
     const startTime = event.ATD || event.ETD || event.skedDep;
     const timeAfter8 = moment(startTime, 'HHmm')
     const startGrid = Math.floor((moment(startTime, 'Hmm')-moment('0800','HHmm'))/1000/60);
-    console.log({startTime, timeAfter8, startGrid, event});
 
     const eventStyle = {
         gridColumn: `${startGrid} / span ${duration}`,
