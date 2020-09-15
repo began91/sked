@@ -26,8 +26,8 @@ const Event = props => {
     
     const startTime = event.ATD || event.ETD || event.skedDep;
     let startCol = Math.floor((moment(startTime, 'MM/DD/YYYY H:mm')-moment('0800','HHmm'))/1000/60);
-    let startRow = 1;
-    if (startCol < 0) {
+    let startRow = 'auto';
+    if (startCol < 0 || startCol+duration > 1020) {
         startCol = -duration;
         startRow = 'auto';
     }
