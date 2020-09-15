@@ -21,9 +21,9 @@ export const scheduleSlice = createSlice({
         launch: (state, action) => {
             const uid = action.payload;
             const event = state.events[uid];
-            event.ATD = moment().format('HHmm');
+            event.ATD = moment().format('MM/DD/YYYY H:mm');
             event.ETE = state.events[uid].duration;
-            event.ETA = moment().add(event.duration,'h').format('HHmm');
+            event.ETA = moment().add(event.duration,'h').format('MM/DD/YYYY H:mm');
             event.status = 'airborne';
 
             //update ETD's of events on this line within 15 minutes of this events land time to be 15 minutes after ETA. and recurse
@@ -39,11 +39,11 @@ export const scheduleSlice = createSlice({
             .filter(event=>event.uid !== uid && !event.status)
             .reduce((ETD, event)=>{
                 // console.log(ETD.format('Hmm'))
-                event.ETD = ETD.format('HHmm');
-                event.ETA = ETD.add(event.duration,'h').format('HHmm');
+                event.ETD = ETD.format('MM/DD/YYYY H:mm');
+                event.ETA = ETD.add(event.duration,'h').format('MM/DD/YYYY H:mm');
                 instructorETA = event.ETA
                 return ETD.add(15,'m');
-            }, moment(state.events[uid].ETA, 'HHmm').add(15,'m'));
+            }, moment(state.events[uid].ETA, 'MM/DD/YYYY H:mm').add(15,'m'));
             state.instructors[instructorUID].ETA = instructorETA;
 
             adjustETDs(state, line, instructorUID, instructorETA)
@@ -51,7 +51,7 @@ export const scheduleSlice = createSlice({
         inbound: (state,action) => {
             const [uid, timeOut] = action.payload;
             // console.log({uid, timeOut});
-            const ATA = moment().add(timeOut,'minutes').format('HHmm');
+            const ATA = moment().add(timeOut,'minutes').format('MM/DD/YYYY H:mm');
             const i = state.events.findIndex(event=> event.uid===uid);
             state.events[i].ATA = ATA;
             state.events[i].status = 'inbound';

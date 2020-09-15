@@ -28,7 +28,7 @@ const useSortedEvents = _eventUIDs => {
     return [...events].sort((a,b)=>{
         const aTime = a.ATD || a.ETD || a.skedDep;
         const bTime = b.ATD || b.ETD || b.skedDep;
-        return moment(aTime,'Hmm') - moment(bTime, 'Hmm');
+        return moment(aTime,'MM/DD/YYYY H:mm') - moment(bTime, 'MM/DD/YYYY H:mm');
     });
 }
 

@@ -5,7 +5,7 @@ import Event from './Event';
 import './Instructor.css';
 
 const timeToGrid = ETD => {
-    return Math.floor((moment(ETD, 'Hmm')-moment('0800','HHmm'))/1000/60)+1;//TODO: Fix date formatting
+    return Math.floor((moment(ETD, 'MM/DD/YYYY H:mm')-moment('0800','HHmm'))/1000/60);
 }
 
 const Instructor = props => {

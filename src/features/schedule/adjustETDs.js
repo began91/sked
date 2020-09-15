@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 const launchesBefore15 = (ETA, ETD) => {
-    let result = moment(ETD,'Hmm').subtract(15,'m').isBefore(moment(ETA,'Hmm'));
+    let result = moment(ETD,'MM/DD/YYYY H:mm').subtract(15,'m').isBefore(moment(ETA,'MM/DD/YYYY H:mm'));
     console.log({ETA, ETD, result})
     return result;
 }
@@ -26,13 +26,13 @@ const adjustETDs = (state, line, instructorUID, ETA) => {
         const aTime = a.ATD || a.ETD || a.skedDep;
         const bTime = b.ATD || b.ETD || b.skedDep;
         console.log({aTime,bTime});
-        return moment(aTime,'Hmm') - moment(bTime,'Hmm');
+        return moment(aTime,'MM/DD/YYYY H:mm') - moment(bTime,'MM/DD/YYYY H:mm');
     }).reduce((ETD, event)=> {
-        event.ETD = ETD.format('Hmm');
-        event.ETA = ETD.add(event.duration,'h').format('Hmm');
+        event.ETD = ETD.format('MM/DD/YYYY H:mm');
+        event.ETA = ETD.add(event.duration,'h').format('MM/DD/YYYY H:mm');
         newETA = event.ETA;
         return ETD.add(15,'m');
-    },moment(ETA,'Hmm').add(15,'m'));
+    },moment(ETA,'MM/DD/YYYY H:mm').add(15,'m'));
     if (newETA) {
         adjustETDs(state, line, newETA)
     }

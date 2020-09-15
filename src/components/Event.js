@@ -25,8 +25,7 @@ const Event = props => {
     const color = eventColor[event.event[0]] || `rgba(255,182,193,${backgroundOpacity})`;
     
     const startTime = event.ATD || event.ETD || event.skedDep;
-    const timeAfter8 = moment(startTime, 'HHmm')
-    let startCol = Math.floor((moment(startTime, 'Hmm')-moment('0800','HHmm'))/1000/60);
+    let startCol = Math.floor((moment(startTime, 'MM/DD/YYYY H:mm')-moment('0800','HHmm'))/1000/60);
     let startRow = 1;
     if (startCol < 0) {
         startCol = -duration;

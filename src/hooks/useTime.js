@@ -6,11 +6,11 @@ const useTime = () => {
     //returns current time and re-renders every 'refresh cycle' ms
     // inspired by: https://medium.com/javascript-in-plain-english/usetime-react-hook-f57979338de
 
-    const [time, setTime] = useState(moment().format('HHmm'));
+    const [time, setTime] = useState(moment().format('MM/DD/YYYY H:mm'));
 
     useEffect(()=>{
         const interval = setInterval(()=>{
-            setTime(moment().format('HHmm'));
+            setTime(moment().format('MM/DD/YYYY H:mm'));
         }, refreshCycle);
         return ()=> clearInterval(interval);
     }, [refreshCycle, setTime]);

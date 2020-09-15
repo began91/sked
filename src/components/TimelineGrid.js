@@ -5,7 +5,7 @@ import './TimelineGrid.css';
 
 
 const TimelineGrid = () => {
-    const minute = Math.round((moment(useTime(),'HHmm')-moment('08','HH'))/60000);
+    const minute = Math.round((moment(useTime(),'MM/DD/YYYY H:mm')-moment('08','HH'))/60000);
     
     let hours = [];
     for (let i = 0; i < 17; i++) {

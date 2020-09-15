@@ -28,7 +28,7 @@ const Status = props => {
     }
 
     if (event.ATD && (status==='airborne' || status==='inbound')) {
-        const elapsedTime = Math.round((moment(time,"HHmm") - moment(event.ATD,"HHmm"))/60000);
+        const elapsedTime = Math.round((moment(time,"MM/DD/YYYY H:mm") - moment(event.ATD,"MM/DD/YYYY H:mm"))/60000);
         // console.log({elapsedTime, time, event});
 
         const percentComplete = Math.round(elapsedTime/(event.duration*60)*100);

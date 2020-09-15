@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} alt="HT-28 Squadron Patch" className="App-logo" />
-        <h1>HT-28 {time.slice(0,2) + ':' + time.slice(2,4)}</h1>
+        <h1>HT-28 {time.slice(-5,-3) + ':' + time.slice(-2)}</h1>
       </header>
       {data?.length ? <Schedule/> : <DropArea/>}
     </div>
