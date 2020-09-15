@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const launchesBefore15 = (ETA, ETD) => {
     let result = moment(ETD,'Hmm').subtract(15,'m').isBefore(moment(ETA,'Hmm'));
-    console.log(result)
+    console.log({ETA, ETD, result})
     return result;
 }
 

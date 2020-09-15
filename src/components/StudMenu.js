@@ -9,22 +9,34 @@ const StudMenu = props => {
     const dispatch = useDispatch();
     const event = props.event;
 
+    const backgroundOpacity = 0.5;
+    const eventColor = {
+        'C': `rgba(255,0,0,${backgroundOpacity}`,
+        'T': `rgba(255,165,0,${backgroundOpacity})`,
+        'N': `rgba(0,128,0,${backgroundOpacity})`,
+        'I': `rgba(135,206,235,${backgroundOpacity})`,
+        'V': `rgba(128,0,128,${backgroundOpacity})`,
+        'S': `rgba(255,165,0,${backgroundOpacity})`,
+        'F': `rgba(255,255,0,${backgroundOpacity})`
+    };
+    const color = eventColor[event.event[0]] || `rgba(255,182,193,${backgroundOpacity})`;
+
     const [display, setDisplay] = useState(false);
 
-    const displayMenu = e => {
-        setDisplay(true);
-        document.addEventListener('click', hideMenu, true);
-    }
+    // const displayMenu = e => {
+    //     setDisplay(true);
+    //     document.addEventListener('click', hideMenu, true);
+    // }
 
-    const hideMenu = () => {
-        setTimeout(()=>{
-            setDisplay(false)
-            document.removeEventListener('click', hideMenu, true);
-        }, 0);
-    }
+    // const hideMenu = () => {
+    //     setTimeout(()=>{
+    //         setDisplay(false)
+    //         document.removeEventListener('click', hideMenu, true);
+    //     }, 0);
+    // }
 
     return (
-        <div className="stud-menu" onContextMenu={()=>console.log('menu')}>
+        <div className="stud-menu" style={{backgroundColor: color}}>
             <button className="launch" onClick={e=>dispatch(launch(event.uid))}>
                 {/* {<img src={launchPNG} alt="" className="launch"/>} */}
                 <LaunchSVG/>

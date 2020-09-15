@@ -36,16 +36,15 @@ const Event = props => {
     const eventStyle = {
         gridColumn: `${startCol} / span ${duration}`,
         gridRowStart: startRow,
-        backgroundColor: color,
     }
 
     return (
         <div className="event" style={eventStyle}>
-            <StudMenu event={event} />
-            <div className="event-info">
+            <div className="event-info" style={{backgroundColor: color}}>
                 <h4 className="stud-name">{displayName}</h4>
                 <p>{event.event.slice(0,8)} {event.duration.toFixed(1)}</p>
             </div>
+            <StudMenu event={event} />
             <Status event={event} />
         </div>
     )

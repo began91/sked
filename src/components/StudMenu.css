@@ -1,4 +1,4 @@
-.menu-bar {
+/* .menu-bar {
     width: 6px;
     height: 6px;
     background-color: black;
@@ -7,14 +7,27 @@
     margin: 3px auto;
     position: relative;
     z-index: 103;
-}
+} */
 
 .stud-menu {
     position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    border-radius: 10px;
+    z-index: 57;
     left: 0;
+    top: 0;
     height: 100%;
     width: 100%;
     text-align: left;
+    transition: transform 0.5s;
+}
+
+.event:hover > .stud-menu {
+    /* transform: translateY(50%); */
+    height: 150%;
 }
 
 .stud-menu-button {
